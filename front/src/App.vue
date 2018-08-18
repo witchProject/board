@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <span>모든 곳에서 보입니다 O_O</span>
     <router-view></router-view>
   </div>
 </template>
