@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    메롱
     <router-view></router-view>
   </div>
 </template>
