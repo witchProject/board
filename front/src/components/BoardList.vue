@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 const items = [];
 
 export default {
@@ -29,7 +31,10 @@ export default {
                 },
                 {
                     key: "registerYmdt",
-                    label: "등록일"
+                    label: "등록일",
+                    formatter: value => {
+                        return moment(String(value)).format('YYYY-MM-DD hh:mm')
+                    }
                 },
                 {
                     key: "visitorCnt",
