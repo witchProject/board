@@ -24,6 +24,9 @@ public class Board {
   private String name;
 
   @Column
+  private String title;
+
+  @Column
   private String content;
 
   @Column
