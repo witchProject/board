@@ -36,6 +36,7 @@
 </template>
 
 <script>
+const categoryNo = 1;
 export default {
     name: "Boards",
     data() {
@@ -47,7 +48,7 @@ export default {
     methods: {
         getBoards() {
             this.$axios
-                .get("http://localhost:8081/boards/" + this.categoryNo1)
+                .get("http://localhost:8081/boards/" + categoryNo)
                 .then(res => {
                     this.getBoardsResult = JSON.stringify(res.data);
                 })
