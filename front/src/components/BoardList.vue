@@ -1,5 +1,9 @@
 <template>
-  <b-table striped hover :items="items" :fields="fields"></b-table>
+<div>
+    <b-table striped hover :items="items" :fields="fields" :current-page="currentPage"></b-table>
+    <b-pagination align="center" size="md" :total-rows="100" v-model="currentPage" :per-page="10" @change="getBoards">
+    </b-pagination>
+</div>
 </template>
 
 <script>
@@ -11,6 +15,7 @@ export default {
     name: "BoardList",
     data() {
         return {
+            currentPage: 1,
             fields: [
                 {
                     key: "boardNo",
@@ -33,7 +38,7 @@ export default {
                     key: "registerYmdt",
                     label: "등록일",
                     formatter: value => {
-                        return moment(String(value)).format('YYYY-MM-DD hh:mm')
+                        return moment(String(value)).format("YYYY-MM-DD hh:mm");
                     }
                 },
                 {
@@ -46,11 +51,20 @@ export default {
     },
     mounted() {
         this.getBoards();
+        console.log(this.$route.params);
+        console.log(this.$route.params.categoryNo);
+        console.log(this.$route.query.pageNumber);
     },
     methods: {
-        getBoards() {
+        getBoards(page) {
+            this.currentPage = page;
             this.$axios
-                .get("http://localhost:8081/boards/" + 1)
+                .get(
+                    "http://localhost:8081/boards/" +
+                        this.$route.params.categoryNo +
+                        "?pageNumber=" +
+                        this.currentPage
+                )
                 .then(res => {
                     console.log(res.data);
                     this.items = res.data;

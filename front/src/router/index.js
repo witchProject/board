@@ -19,7 +19,7 @@ export default new Router({
       component: Boards
     },
     {
-      path: "/boardlist",
+      path: "/boardlist/:categoryNo",
       name: "BoardList",
       component: BoardList
     }
