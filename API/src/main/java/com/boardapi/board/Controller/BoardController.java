@@ -3,7 +3,6 @@ package com.boardapi.board.Controller;
 import com.boardapi.board.Model.Board;
 import com.boardapi.board.Service.BoardService;
 import java.util.List;
-import javax.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,10 @@ public class BoardController {
   }
 
   @GetMapping("{categoryNo}")
-  public ResponseEntity<List<Board>> getBoards(@PathVariable int categoryNo) {
-    List<Board> response = boardService.getBoardsByCategoryNo(categoryNo);
+  public ResponseEntity<List<Board>> getBoards(@PathVariable int categoryNo,
+      @RequestParam(required = false) Integer pageNumber,
+      @RequestParam(required = false) Integer pageSize) {
+    List<Board> response = boardService.getBoardsByCategoryNo(categoryNo, pageNumber, pageSize);
     return ResponseEntity.ok(response);
   }
 
